@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit empleado</title>
+  
+</head>
+<body>
+
+
+            <h1 class = "text-center"> Nuevo empleado </h1>
+
+           
+                <form th:action="@{/employee/new}" th:object="${employee}" method="POST">
+                    <div>
+                        <label>Nombre de usuario</label>
+                        <input type="text" name="name" th:field="*{name}"
+                                
+                               placeholder="Nombre de usuario" />
+                        <p th:errors="*{name}" class="text-danger"
+                           th:if="${#fields.hasErrors('name')}">
+                        </p>
+
+                    </div>
+                    <div>
+                        <label>Apellido del usuario</label>
+                        <input type="text" name="surename" th:field="*{surename}"
+                                
+                               placeholder="Apellido del usuario" />
+                        <p th:errors="*{surename}" class="text-danger"
+                           th:if="${#fields.hasErrors('surename')}">
+                        </p>
+                    </div>
+                    <div>
+                        <label>Oficio del usuario</label>
+                        <input type="text" name="job" th:field="*{job}"
+                                
+                               placeholder="Oficio del usuario" />
+                        <p th:errors="*{job}" class="text-danger"
+                           th:if="${#fields.hasErrors('job')}">
+                        </p>
+                    </div>
+                    <div>
+                        <label>Email del empleados</label>
+                        <input type="email" name="email" th:field="*{email}"
+                                
+                               placeholder="Enter Student Email" />
+                        <p th:errors="*{email}" class="text-danger"
+                           th:if="${#fields.hasErrors('email')}">
+                        </p>
+                    </div>
+                   
+                    <div>
+                        <label>Fecha de contratacion del empleado</label>
+                        <input type="date" name="dateHire" th:field="*{dateHire}"
+                                
+                               placeholder="Enter Student Email" />
+                        <p th:errors="*{dateHire}" class="text-danger"
+                           th:if="${#fields.hasErrors('dateHire')}">
+                        </p>
+                    </div>
+                    <div >
+                        <label>Salario del empleado</label>
+                        <input type="number" step="0.01" name="sal" th:field="*{sal}"
+                                
+                               placeholder="Salario del empleado" />
+                        <p th:errors="*{sal}" class="text-danger"
+                           th:if="${#fields.hasErrors('sal')}">
+                        </p>
+                    </div>
+
+                    <div >
+                        <label>Departament</label>
+                        <select th:field="${employee.departament}" name="departament" multiple="true">
+                            <option th:each="departament :${departamentList}" th:value="${departament.id}" th:text="${departament.name} + ' - ' + ${departament.location}" ></option>
+                        </select>
+                        <p th:errors="*{departament}" class="text-danger"
+                           th:if="${#fields.hasErrors('departament')}">
+                        </p>
+                    </div>
+
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+
+                </form>
+            
+</body>
+</html>
